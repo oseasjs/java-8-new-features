@@ -39,6 +39,7 @@ public class FunctionComponent {
         json.put("id", funcPutJsonAttribute.apply(people.getId()));
         json.put("name", funcPutJsonAttribute.apply(people.getName()));
         json.put("date", funcPutJsonAttribute.apply(funcGetDateAsString.apply(people.getDate())));
+
         System.out.println(json);
         return json.toString();
     }
