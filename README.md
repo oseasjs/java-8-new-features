@@ -2,17 +2,17 @@
 
 # Topics
 
-<p>Lambda Expressions</p>
-<p>Functional Interfaces</p>
-<p>Default methods in Interface</p>
-<p>Static Methods in Interfaces</p>
-<p>Predicate</p>
-<p>Function</p>
-<p>Consumer</p>
-<p>Supplier</p>
-<p>Method Reference & Constructor Reference by Double Colon(::) Operator</p>
-<p>Stream API</p>
-<p>Date & Time API ( Joda API)</p>
+* Lambda Expressions
+* Functional Interfaces
+* Default methods in Interface
+* Static Methods in Interfaces
+* Predicate
+* Function
+* Consumer
+* Supplier
+* Method Reference & Constructor Reference by Double Colon(::) Operator
+* Stream API
+* Date & Time API ( Joda API)
 
 
 # Objectives & Targets</p>
