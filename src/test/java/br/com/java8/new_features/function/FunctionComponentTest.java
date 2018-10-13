@@ -1,6 +1,7 @@
 package br.com.java8.new_features.function;
 
 import br.com.java8.new_features.Java8NewFeaturesApplicationTest;
+import br.com.java8.new_features.dtos.PeopleDto;
 import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.Before;
@@ -13,12 +14,12 @@ public class FunctionComponentTest extends Java8NewFeaturesApplicationTest {
 
     @Autowired
     private FunctionComponent functionComponent;
-    private People people;
+    private PeopleDto people;
     private JSONObject peopleAsJson;
 
     @Before
     public void init() {
-        people = new People(1L, "Jonh", LocalDate.now());
+        people = new PeopleDto(1L, "Jonh", LocalDate.now());
 
         peopleAsJson = new JSONObject();
         peopleAsJson.put("id", people.getId()).

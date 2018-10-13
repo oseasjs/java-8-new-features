@@ -1,5 +1,6 @@
 package br.com.java8.new_features.function;
 
+import br.com.java8.new_features.dtos.PeopleDto;
 import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 
@@ -13,21 +14,18 @@ public class FunctionComponent {
 
     private static Function<Object, Object> funcPutJsonAttribute = obj -> obj != null ? obj : JSONObject.NULL;
     private static Function2<Integer, Integer, Integer> funcMultiply = (value1, value2) -> value1 * value2;
+    private static Function<LocalDate, Object> funcGetDateAsString = date -> DateTimeFormatter.ofPattern("yyyy-MM-dd").format(date);
 
     private static Object getAsString(Optional<Object> value) {
         return value.map(
-                v -> {
-                    return (v instanceof LocalDate) ? getDateAsString((LocalDate) v) : v;
-                }
-            ).orElse(JSONObject.NULL);
+            v -> {
+                return (v instanceof LocalDate) ? funcGetDateAsString.apply((LocalDate) v) : v;
+            }
+        ).orElse(JSONObject.NULL);
     }
 
-    private static String getDateAsString(LocalDate date) {
-        return DateTimeFormatter.ofPattern("yyyy-MM-dd").format(date);
-    }
-
-    private static People getPeople() {
-        return new People(Long.valueOf(1), "Jonh", LocalDate.now());
+    private static PeopleDto getPeople() {
+        return new PeopleDto(Long.valueOf(1), "Jonh", LocalDate.now());
     }
 
     public Integer add3(Integer value) {
@@ -43,25 +41,25 @@ public class FunctionComponent {
         return result;
     }
 
-    public String getPeopleAsJsonUsingSimpleFunction(People people) {
+    public String getPeopleAsJsonUsingSimpleFunction(PeopleDto people) {
         JSONObject json = new JSONObject();
         json.put("id", funcPutJsonAttribute.apply(people.getId()));
         json.put("name", funcPutJsonAttribute.apply(people.getName()));
-        json.put("date", funcPutJsonAttribute.apply(getDateAsString(people.getDate())));
+        json.put("date", funcPutJsonAttribute.apply(funcGetDateAsString.apply(people.getDate())));
         System.out.println(json);
         return json.toString();
     }
 
-    public String getPeopleAsJsonUsingFunctionWithoutOptionalCheck(People people) {
+    public String getPeopleAsJsonUsingFunctionWithoutOptionalCheck(PeopleDto people) {
         JSONObject json = new JSONObject();
         json.put("id", funcPutJsonAttribute.apply(people.getId()));
         json.put("name", funcPutJsonAttribute.apply(people.getName()));
-        json.put("date", funcPutJsonAttribute.apply(getDateAsString(people.getDate())));
+        json.put("date", funcPutJsonAttribute.apply(funcGetDateAsString.apply(people.getDate())));
         System.out.println(json);
         return json.toString();
     }
 
-    public String getPeopleAsJsonUsingFunctionWithOptionalCheck(People people) {
+    public String getPeopleAsJsonUsingFunctionWithOptionalCheck(PeopleDto people) {
         Function<Optional<Object>, Object> funcPutJsonAttribute2 = (_value) ->
                 _value.isPresent() ? getAsString(_value) : JSONObject.NULL;
         JSONObject json = new JSONObject();
@@ -72,7 +70,7 @@ public class FunctionComponent {
         return json.toString();
     }
 
-    public String getPeopleAsJsonWithOptionalCheck(People people) {
+    public String getPeopleAsJsonWithOptionalCheck(PeopleDto people) {
         JSONObject json = new JSONObject();
         json.put("id", getAsString(Optional.ofNullable(people.getId())));
         json.put("name", getAsString(Optional.ofNullable(people.getName())));
