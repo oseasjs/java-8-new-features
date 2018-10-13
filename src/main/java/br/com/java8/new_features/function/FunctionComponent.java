@@ -13,7 +13,6 @@ import java.util.function.Function;
 public class FunctionComponent {
 
     private static Function<Object, Object> funcPutJsonAttribute = obj -> obj != null ? obj : JSONObject.NULL;
-    private static Function2<Integer, Integer, Integer> funcMultiply = (value1, value2) -> value1 * value2;
     private static Function<LocalDate, Object> funcGetDateAsString = date -> DateTimeFormatter.ofPattern("yyyy-MM-dd").format(date);
 
     private static Object getAsString(Optional<Object> value) {
@@ -32,12 +31,6 @@ public class FunctionComponent {
         Function<Integer, Integer> funcSum = i -> i + Integer.valueOf(3);
         Integer result = funcSum.apply(value);
         System.out.println("5 + 3 = " + result);
-        return result;
-    }
-
-    public Integer multiplyWithCustomizedFunction(Integer value1, Integer value2) {
-        Integer result = funcMultiply.apply(value1, value2);
-        System.out.println("5 * 8 = " + result);
         return result;
     }
 
@@ -79,9 +72,4 @@ public class FunctionComponent {
         return json.toString();
     }
 
-}
-
-@FunctionalInterface
-interface Function2<T, U, V> {
-    public V apply(T t, U u);
 }

@@ -28,33 +28,15 @@ public class FunctionComponentTest extends Java8NewFeaturesApplicationTest {
     }
 
     @Test
-    public void when5Add3_ThenRetrivedNumberShouldBe8() {
+    public void whenAdd5To3_ThenRetrivedNumberShouldBe8() {
         Assert.assertEquals(Integer.valueOf(8),
                 functionComponent.add3(Integer.valueOf(5)));
     }
 
     @Test(expected = NullPointerException.class)
-    public void whenNullAdd3_ThenExceptionIsExpected() {
+    public void whenAddNullTo3_ThenExceptionIsExpected() {
         Assert.assertEquals(Integer.valueOf(8),
                 functionComponent.add3(null));
-    }
-
-    @Test
-    public void whenMultiply5And3_ThenRetrivedNumberShouldBe15() {
-        Assert.assertEquals(Integer.valueOf(15),
-                functionComponent.multiplyWithCustomizedFunction(Integer.valueOf(5), Integer.valueOf(3)));
-    }
-
-    @Test(expected = NullPointerException.class)
-    public void whenMultiplyNullAnd3_ThenExceptionIsExpected() {
-        functionComponent.multiplyWithCustomizedFunction(null, Integer.valueOf(3));
-        Assert.fail();
-    }
-
-    @Test(expected = NullPointerException.class)
-    public void whenMultiply5AndNull_ThenExceptionIsExpected() {
-        functionComponent.multiplyWithCustomizedFunction(Integer.valueOf(5), null);
-        Assert.fail();
     }
 
     @Test
