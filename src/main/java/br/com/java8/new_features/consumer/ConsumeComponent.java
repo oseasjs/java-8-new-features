@@ -2,14 +2,18 @@ package br.com.java8.new_features.consumer;
 
 import br.com.java8.new_features.dtos.PeopleDto;
 import br.com.java8.new_features.enums.PeopleMovimentStatusEnum;
-import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Component;
 
-import javax.swing.*;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
+
+/*
+The consumer accepts a single argument by calling its accept (args) method
+and does not return any value making it a void method.
+*/
 
 @Component
 public class ConsumeComponent {
@@ -24,18 +28,17 @@ public class ConsumeComponent {
     }
 
     public PeopleMovimentStatusEnum stopMoviment(PeopleDto peopleDto) {
-        acceptPeopleDtoConsume(ConsumeComponent::stop, peopleDto);
+        Optional.ofNullable(peopleDto).ifPresent(ConsumeComponent::stop);
         return peopleDto.getMovimentStatusEnum();
-
     }
 
     public PeopleMovimentStatusEnum walkMoviment(PeopleDto peopleDto) {
-        acceptPeopleDtoConsume(ConsumeComponent::walk, peopleDto);
+        Optional.ofNullable(peopleDto).ifPresent(ConsumeComponent::walk);
         return peopleDto.getMovimentStatusEnum();
     }
 
     public PeopleMovimentStatusEnum runMoviment(PeopleDto peopleDto) {
-        acceptPeopleDtoConsume(ConsumeComponent::run, peopleDto);
+        Optional.ofNullable(peopleDto).ifPresent(ConsumeComponent::run);
         return peopleDto.getMovimentStatusEnum();
     }
 
@@ -64,10 +67,6 @@ public class ConsumeComponent {
     private static void run(PeopleDto peopleDto) {
         peopleDto.setMovimentStatusEnum(PeopleMovimentStatusEnum.RUNNING);
         peopleDto.setLastMovimentDate(LocalDate.now());
-    }
-
-    private static void acceptPeopleDtoConsume(Consumer<PeopleDto> movePeople, PeopleDto peopleDto) {
-        movePeople.accept(peopleDto);
     }
 
 }
