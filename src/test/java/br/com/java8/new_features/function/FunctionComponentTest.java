@@ -1,6 +1,7 @@
 package br.com.java8.new_features.function;
 
 import br.com.java8.new_features.Java8NewFeaturesApplicationTest;
+import br.com.java8.new_features.dtos.PeopleDto;
 import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.Before;
@@ -13,12 +14,12 @@ public class FunctionComponentTest extends Java8NewFeaturesApplicationTest {
 
     @Autowired
     private FunctionComponent functionComponent;
-    private People people;
+    private PeopleDto people;
     private JSONObject peopleAsJson;
 
     @Before
     public void init() {
-        people = new People(1L, "Jonh", LocalDate.now());
+        people = new PeopleDto(1L, "Jonh", LocalDate.now());
 
         peopleAsJson = new JSONObject();
         peopleAsJson.put("id", people.getId()).
@@ -27,33 +28,15 @@ public class FunctionComponentTest extends Java8NewFeaturesApplicationTest {
     }
 
     @Test
-    public void when5Add3_ThenRetrivedNumberShouldBe8() {
+    public void whenAdd5To3_ThenRetrivedNumberShouldBe8() {
         Assert.assertEquals(Integer.valueOf(8),
                 functionComponent.add3(Integer.valueOf(5)));
     }
 
     @Test(expected = NullPointerException.class)
-    public void whenNullAdd3_ThenExceptionIsExpected() {
+    public void whenAddNullTo3_ThenExceptionIsExpected() {
         Assert.assertEquals(Integer.valueOf(8),
                 functionComponent.add3(null));
-    }
-
-    @Test
-    public void whenMultiply5And3_ThenRetrivedNumberShouldBe15() {
-        Assert.assertEquals(Integer.valueOf(15),
-                functionComponent.multiplyWithCustomizedFunction(Integer.valueOf(5), Integer.valueOf(3)));
-    }
-
-    @Test(expected = NullPointerException.class)
-    public void whenMultiplyNullAnd3_ThenExceptionIsExpected() {
-        functionComponent.multiplyWithCustomizedFunction(null, Integer.valueOf(3));
-        Assert.fail();
-    }
-
-    @Test(expected = NullPointerException.class)
-    public void whenMultiply5AndNull_ThenExceptionIsExpected() {
-        functionComponent.multiplyWithCustomizedFunction(Integer.valueOf(5), null);
-        Assert.fail();
     }
 
     @Test
@@ -63,7 +46,7 @@ public class FunctionComponentTest extends Java8NewFeaturesApplicationTest {
     }
 
     @Test
-    public void whenGetPeopleAsJsonUsingSingleFunctionWithNoId_ThenRetrivedJsonIsCorrect() {
+    public void whenGetPeopleAsJsonUsingSingleFunctionWithoutId_ThenRetrivedJsonIsCorrect() {
         peopleAsJson.put("id", JSONObject.NULL);
         people.setId(null);
         Assert.assertEquals(peopleAsJson.toString(),
@@ -71,7 +54,7 @@ public class FunctionComponentTest extends Java8NewFeaturesApplicationTest {
     }
 
     @Test
-    public void whenGetPeopleAsJsonUsingSingleFunctionWithNameId_ThenRetrivedJsonIsCorrect() {
+    public void whenGetPeopleAsJsonUsingSingleFunctionWithoutName_ThenRetrivedJsonIsCorrect() {
         peopleAsJson.put("name", JSONObject.NULL);
         people.setName(null);
         Assert.assertEquals(peopleAsJson.toString(),
@@ -79,7 +62,7 @@ public class FunctionComponentTest extends Java8NewFeaturesApplicationTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void whenGetPeopleAsJsonUsingSingleFunctionWithDateId_ThenExceptionIsExpected() {
+    public void whenGetPeopleAsJsonUsingSingleFunctionWithoutDate_ThenExceptionIsExpected() {
         peopleAsJson.put("date", JSONObject.NULL);
         people.setDate(null);
         functionComponent.getPeopleAsJsonUsingSimpleFunction(people);
@@ -93,7 +76,7 @@ public class FunctionComponentTest extends Java8NewFeaturesApplicationTest {
     }
 
     @Test
-    public void whenGetPeopleAsJsonWithNoIdUsingFunctionWithoutOptionalCheck_ThenRetrivedJsonIsCorrect() {
+    public void whenGetPeopleAsJsonWithoutIdUsingFunctionWithoutOptionalCheck_ThenRetrivedJsonIsCorrect() {
         peopleAsJson.put("id", JSONObject.NULL);
         people.setId(null);
         Assert.assertEquals(peopleAsJson.toString(),
@@ -101,7 +84,7 @@ public class FunctionComponentTest extends Java8NewFeaturesApplicationTest {
     }
 
     @Test
-    public void whenGetPeopleAsJsonWithNoNameUsingFunctionWithoutOptionalCheck_ThenRetrivedJsonIsCorrect() {
+    public void whenGetPeopleAsJsonWithoutNameUsingFunctionWithoutOptionalCheck_ThenRetrivedJsonIsCorrect() {
         peopleAsJson.put("name", JSONObject.NULL);
         people.setName(null);
         Assert.assertEquals(peopleAsJson.toString(),
@@ -109,7 +92,7 @@ public class FunctionComponentTest extends Java8NewFeaturesApplicationTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void whenGetPeopleAsJsonWithNoDateUsingFunctionWithoutOptionalCheck_ThenRetrivedJsonIsCorrect() {
+    public void whenGetPeopleAsJsonWithoutDateUsingFunctionWithoutOptionalCheck_ThenRetrivedJsonIsCorrect() {
         peopleAsJson.put("date", JSONObject.NULL);
         people.setDate(null);
         Assert.assertEquals(peopleAsJson.toString(),
@@ -124,7 +107,7 @@ public class FunctionComponentTest extends Java8NewFeaturesApplicationTest {
     }
 
     @Test
-    public void whenGetPeopleAsJsonWithNoIdUsingFunctionWithOptionalCheck_ThenRetrivedJsonIsCorrect() {
+    public void whenGetPeopleAsJsonWithoutIdUsingFunctionWithOptionalCheck_ThenRetrivedJsonIsCorrect() {
         peopleAsJson.put("id", JSONObject.NULL);
         people.setId(null);
         Assert.assertEquals(peopleAsJson.toString(),
@@ -132,7 +115,7 @@ public class FunctionComponentTest extends Java8NewFeaturesApplicationTest {
     }
 
     @Test
-    public void whenGetPeopleAsJsonWithNoNameUsingFunctionWithOptionalCheck_ThenRetrivedJsonIsCorrect() {
+    public void whenGetPeopleAsJsonWithoutNameUsingFunctionWithOptionalCheck_ThenRetrivedJsonIsCorrect() {
         peopleAsJson.put("name", JSONObject.NULL);
         people.setName(null);
         Assert.assertEquals(peopleAsJson.toString(),
@@ -140,7 +123,7 @@ public class FunctionComponentTest extends Java8NewFeaturesApplicationTest {
     }
 
     @Test
-    public void whenGetPeopleAsJsonWithNoDateUsingFunctionWithOptionalCheck_ThenRetrivedJsonIsCorrect() {
+    public void whenGetPeopleAsJsonWithoutDateUsingFunctionWithOptionalCheck_ThenRetrivedJsonIsCorrect() {
         peopleAsJson.put("date", JSONObject.NULL);
         people.setDate(null);
         Assert.assertEquals(peopleAsJson.toString(),
