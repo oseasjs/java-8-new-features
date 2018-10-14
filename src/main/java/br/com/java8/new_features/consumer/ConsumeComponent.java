@@ -24,37 +24,31 @@ public class ConsumeComponent {
     }
 
     public PeopleMovimentStatusEnum stopMoviment(PeopleDto peopleDto) {
-        Consumer<PeopleDto> movePeople = ConsumeComponent::stop;
-        movePeople.accept(peopleDto);
+        acceptPeopleDtoConsume(ConsumeComponent::stop, peopleDto);
         return peopleDto.getMovimentStatusEnum();
 
     }
 
     public PeopleMovimentStatusEnum walkMoviment(PeopleDto peopleDto) {
-        Consumer<PeopleDto> movePeople = ConsumeComponent::walk;
-        movePeople.accept(peopleDto);
+        acceptPeopleDtoConsume(ConsumeComponent::walk, peopleDto);
         return peopleDto.getMovimentStatusEnum();
     }
 
     public PeopleMovimentStatusEnum runMoviment(PeopleDto peopleDto) {
-        Consumer<PeopleDto> movePeople = ConsumeComponent::run;
-        movePeople.accept(peopleDto);
+        acceptPeopleDtoConsume(ConsumeComponent::run, peopleDto);
         return peopleDto.getMovimentStatusEnum();
     }
 
     public void forceAllPeopleToStop(List<PeopleDto> peopleDtoList) {
-        Consumer<PeopleDto> movePeople = ConsumeComponent::stop;
-        peopleDtoList.stream().forEach(movePeople);
+        peopleDtoList.stream().forEach(ConsumeComponent::stop);
     }
 
     public void forceAllPeopleToWalk(List<PeopleDto> peopleDtoList) {
-        Consumer<PeopleDto> movePeople = ConsumeComponent::walk;
-        peopleDtoList.stream().forEach(movePeople);
+        peopleDtoList.stream().forEach(ConsumeComponent::walk);
     }
 
     public void forceAllPeopleToRun(List<PeopleDto> peopleDtoList) {
-        Consumer<PeopleDto> movePeople = ConsumeComponent::run;
-        peopleDtoList.stream().forEach(movePeople);
+        peopleDtoList.stream().forEach(ConsumeComponent::run);
     }
 
     private static void stop(PeopleDto peopleDto) {
@@ -70,6 +64,10 @@ public class ConsumeComponent {
     private static void run(PeopleDto peopleDto) {
         peopleDto.setMovimentStatusEnum(PeopleMovimentStatusEnum.RUNNING);
         peopleDto.setLastMovimentDate(LocalDate.now());
+    }
+
+    private static void acceptPeopleDtoConsume(Consumer<PeopleDto> movePeople, PeopleDto peopleDto) {
+        movePeople.accept(peopleDto);
     }
 
 }
