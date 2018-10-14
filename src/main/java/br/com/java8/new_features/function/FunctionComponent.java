@@ -16,11 +16,9 @@ public class FunctionComponent {
     private static Function<LocalDate, Object> funcGetDateAsString = date -> DateTimeFormatter.ofPattern("yyyy-MM-dd").format(date);
 
     private static Object getAsString(Optional<Object> value) {
-        return value.map(
-            v -> {
-                return (v instanceof LocalDate) ? funcGetDateAsString.apply((LocalDate) v) : v;
-            }
-        ).orElse(JSONObject.NULL);
+        return value.map(v -> {
+            return (v instanceof LocalDate) ? funcGetDateAsString.apply((LocalDate) v) : v;
+        }).orElse(JSONObject.NULL);
     }
 
     private static PeopleDto getPeople() {
