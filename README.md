@@ -25,7 +25,7 @@
 <p>7. Annotation other issues</p>
 
 
-#Examples
+# Examples
 <p>1.1. Default methods in Interface</p>
 <p>1.2. Static Methods in Interfaces</p>
 <br/>
@@ -36,17 +36,19 @@
 <p>3.1. Foreach methods & special Iterable method in iterable</p>
 <p>3.2. Stream Api (java.util.stream)</p>
 <p>3.3. Functional Api (java.util.function)</p>
-<p>      |--> Predicate</p>
-<p>      |--> Consumer</p>
-<p>      |--> Suplier</p>
+- Predicate
+- Consumer
+- Suplier
+<br/>
 <p>3.4. Improvement Hashmap Collection by Key Collection</p>
 <p>3.5. Narrow java interence <></p>
 <br/>
 <p>4.1. New Date & Time Api</p>
-<p>      |-> Joda Api</p>
+* Joda Api
+<br/>
 <p>4.2. Base 64 Api</p>
 <p>4.3. Secure Api</p>
 <br/>
 <p>5.3. Annotation concepts enhanced</p>
-<p>      |-> Repeated annotation</p>
-<p>      |-> Type annotation</p>
+* Repeated annotation</p>
+* Type annotation</p>
